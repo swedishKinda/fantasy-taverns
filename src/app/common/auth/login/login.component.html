@@ -1,4 +1,4 @@
-<h2>Login</h2>
+<h2>{{ showSignup ? 'Sign up' : 'Login'}}</h2>
 <form>
   <div class="row">
     <div class="col-md-6">
@@ -12,8 +12,14 @@
   <br />
   <div class="row">
     <div class="col-md-6">
-      <button type="submit" class="btn btn-primary" (click)="login()">
-        Submit
+      <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">
+        {{ showSignup ? "Sign Up" : "Submit"}}
+      </button>
+      <button *ngIf="!showSignup" type="submit" class="btn btn-secondary" style="float: right" (click)="toggleSignup()">
+        Sign Up
+      </button>
+      <button *ngIf="showSignup" type="button" class="btn btn-secondary" style="float: right" (click)="toggleLogin()">
+        {{ showSignup ? "Cancel" : "Sign Up"}}
       </button>
     </div>
   </div>
