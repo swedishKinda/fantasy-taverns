@@ -15,11 +15,8 @@
       <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">
         {{ showSignup ? "Sign Up" : "Submit"}}
       </button>
-      <button *ngIf="!showSignup" type="submit" class="btn btn-secondary" style="float: right" (click)="toggleSignup()">
-        Sign Up
-      </button>
-      <button *ngIf="showSignup" type="button" class="btn btn-secondary" style="float: right" (click)="toggleSignup()">
-        Cancel
+      <button type="button" class="btn btn-secondary" style="float: right" (click)="toggleSignup()">
+        {{ showSignup ? "Cancel" : "Sign Up"}}
       </button>
     </div>
   </div>
