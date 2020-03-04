@@ -18,7 +18,7 @@
       <button *ngIf="!showSignup" type="submit" class="btn btn-secondary" style="float: right" (click)="toggleSignup()">
         Sign Up
       </button>
-      <button *ngIf="showSignup" type="button" class="btn btn-secondary" style="float: right" (click)="toggleLogin()">
+      <button *ngIf="showSignup" type="button" class="btn btn-secondary" style="float: right" (click)="toggleSignup()">
         {{ showSignup ? "Cancel" : "Sign Up"}}
       </button>
     </div>

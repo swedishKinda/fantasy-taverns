@@ -9,7 +9,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     userName = '';
     password = '';
     showSignup = false;
-    // showLogin = true;
 
     constructor(private router: Router, private authService: AuthService) {}
 
@@ -22,12 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     toggleSignup(): void {
-        this.showSignup = !this.showSignup,
-        this.userName='',
-        this.password=''
-    }
-
-    toggleLogin (): void {
         this.showSignup = !this.showSignup,
         this.userName='',
         this.password=''
