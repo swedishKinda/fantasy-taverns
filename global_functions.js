@@ -19,6 +19,9 @@ returnError = function(res, err, code) {
     if (typeof err == 'object' && typeof err.message != 'undefined') {
         error = err.message;
     }
+    if (typeof err != 'undefined') {
+        error = err;
+    }
     if (typeof code !== 'undefined') {
         res.statusCode = code;
     }

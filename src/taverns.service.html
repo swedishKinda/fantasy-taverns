@@ -1,0 +1,5 @@
+<select [(ngModel)]="selected">
+    <option [ngValue]="undefined" disabled>Select Any </option>
+    <option *ngFor="let tavern of Taverns" [ngValue]="tavern"> {{tavern.Name}} </option>
+</select>
+<h3>{{selected | json}} </h3>

@@ -16,14 +16,8 @@
       <label *ngIf="showSignup">Admin</label>
       <br>
       <label *ngIf="showSignup">Tavern Name</label>
-      <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminInput" name="Tavern" />
-      <select *ngIf="showSignup && !isAdmin" class="form-control" [(ngModel)]="pickTavern">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
+      <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminTavernInput" name="Tavern Name" />
+      <my-app></my-app>
       <br>
       <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">
         {{ showSignup ? "Sign Up" : "Submit"}}

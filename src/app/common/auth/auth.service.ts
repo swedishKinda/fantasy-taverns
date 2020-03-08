@@ -7,7 +7,8 @@ import { CookieService } from 'ngx-cookie';
 export interface IUser {
     Id: number;
     UserName: string;
-    TavernId: string;
+    TavernId: number;
+    TavernName: string;
     RoleId: number;
 }
 
@@ -82,4 +83,9 @@ export class AuthService {
             this.cookieService.remove(tokenCookieKey);
         }
     }
+    
+    signup(user: any): Observable<any> {
+        return this.http.post('http://localhost:3000/users', user);
+    }
+
 }
