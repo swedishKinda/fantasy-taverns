@@ -12,6 +12,19 @@
   <br />
   <div class="row">
     <div class="col-md-6">
+      <input *ngIf="showSignup" type="checkbox" class="form-check-input" [(ngModel)]="admin">
+      <label *ngIf="showSignup">Admin</label>
+      <br>
+      <label *ngIf="showSignup">Tavern Name</label>
+      <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminInput" name="Tavern" />
+      <select *ngIf="showSignup && !isAdmin" class="form-control" [(ngModel)]="pickTavern">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      <br>
       <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">
         {{ showSignup ? "Sign Up" : "Submit"}}
       </button>
