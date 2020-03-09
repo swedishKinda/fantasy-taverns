@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         const payload = {
             UserName: this.userName,
             Password: this.password,
-            TavernID: this.pickTavern,
-            TavernName: this.adminTavernInput
+            // TavernID: this.pickTavern,
+            // TavernName: this.adminTavernInput
         }
         console.log(payload);
 
