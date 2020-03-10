@@ -1,11 +1,11 @@
 import { Component , DoCheck } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
+  selector: 'my-taverns',
   templateUrl: './taverns.service.html'
 //   styleUrls: [ './app.component.css' ]
 })
-export class TavernsService {
+export class TavernsComponent {
   name = 'Angular 5';
   Taverns = [{
     Id:1,

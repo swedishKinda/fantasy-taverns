@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { TavernsService } from './taverns.service';
 
 @Component({
     templateUrl: './login.component.html',
@@ -12,7 +11,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     password = '';
     showSignup = false;
 
-    constructor(private router: Router, private authService: AuthService, private tavernsService: TavernsService) { }
+    constructor(private router: Router, private authService: AuthService) { }
 
     ngOnInit(): void {
         console.log('comes on the screen');
