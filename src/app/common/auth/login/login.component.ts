@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     userName = '';
     password = '';
     showSignup = false;
+    isAdmin = false;
 
     constructor(private router: Router, private authService: AuthService) { }
 
@@ -59,4 +60,12 @@ export class LoginComponent implements OnInit, OnDestroy {
             },
         );
     }
+
+    toggleAdmin(event) {
+        if ( event.target.checked ) {
+            this.isAdmin = true;
+            console.log(this.isAdmin)
+        }
+    }
+
 }

@@ -12,12 +12,12 @@
   <br />
   <div class="row">
     <div class="col-md-6">
-      <input *ngIf="showSignup" type="checkbox" class="form-check-input" [(ngModel)]="admin">
+      <input *ngIf="showSignup" type="checkbox" class="form-check-input" (change)="toggleAdmin($event)">
       <label *ngIf="showSignup">Admin</label>
       <br>
       <label *ngIf="showSignup">Tavern Name</label>
       <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminTavernInput" name="Tavern Name" />
-      <my-taverns></my-taverns>
+      <my-taverns *ngIf="showSignup && !isAdmin"></my-taverns>
       <br>
       <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">
         {{ showSignup ? "Sign Up" : "Submit"}}
