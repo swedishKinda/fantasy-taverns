@@ -16,7 +16,7 @@
       <label *ngIf="showSignup">Admin</label>
       <br>
       <label *ngIf="showSignup">Tavern Name</label>
-      <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminTavernInput" name="Tavern Name" />
+      <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminTavernInput" name="adminTavernInput" />
       <my-taverns *ngIf="showSignup && !isAdmin"></my-taverns>
       <br>
       <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">

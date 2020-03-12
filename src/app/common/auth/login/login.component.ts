@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit, OnDestroy {
     userName = '';
     password = '';
+    adminTavernInput = '';
     showSignup = false;
     isAdmin = false;
 
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     toggleSignup(): void {
         this.showSignup = !this.showSignup,
             this.userName = '',
-            this.password = ''
+            this.password = '',
+            this.isAdmin = false
     }
 
     login(): void {
@@ -46,8 +48,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         const payload = {
             UserName: this.userName,
             Password: this.password,
-            // TavernID: this.pickTavern,
-            // TavernName: this.adminTavernInput
+            TavernID: this.pickTavern,
+            TavernName: this.adminTavernInput
         }
         console.log(payload);
 
@@ -64,7 +66,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     toggleAdmin(event) {
         if ( event.target.checked ) {
             this.isAdmin = true;
-            console.log(this.isAdmin)
+            this.adminTavernInput = '';
         }
     }
 
