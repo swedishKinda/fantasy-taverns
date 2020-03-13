@@ -17,7 +17,7 @@ getAll = async function (req, res) {
             .input('UserId', sql.Int, req.user.Id)
             .query(
                 // eslint-disable-next-line quotes
-                `select * from ToDos where UserId = @UserId and Name LIKE '%' + @Name + '%' order by OrderId ASC`,
+                `select * from Taverns where UserId = @UserId and Name LIKE '%' + @Name + '%' order by OrderId ASC`,
             );
         Taverns = Taverns.recordset;
     } catch (e) {
@@ -44,7 +44,7 @@ const create = async function (req, res) {
             .request()
             .input('UserId', sql.Int, req.user.Id)
             .query(
-                'select max(OrderId) as OrderId from ToDos where UserId = @UserId',
+                'select max(OrderId) as OrderId from Taverns where UserId = @UserId',
             );
         orderId = orderId.recordset.shift().OrderId;
     } catch (e) {
@@ -60,7 +60,7 @@ const create = async function (req, res) {
             .input('OrderId', sql.Int, orderId)
             .input('UserId', sql.Int, req.user.Id)
             .query(
-                'INSERT INTO ToDos ([Name], [UserId], [OrderId]) OUTPUT inserted.* values (@Name, @UserId, @OrderId)',
+                'INSERT INTO Taverns ([Name], [UserId], [OrderId]) OUTPUT inserted.* values (@Name, @UserId, @OrderId)',
             );
         toDo = toDo.recordset.shift();
     } catch (e) {
