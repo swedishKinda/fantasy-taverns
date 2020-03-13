@@ -1,30 +1,32 @@
 <h2>{{ showSignup ? 'Sign up' : 'Login'}}</h2>
-<form>
-  <div class="row">
-    <div class="col-md-6">
-      <label>User Name</label>
-      <input type="text" class="form-control" [(ngModel)]="userName" name="userName" />
-      <label>Password</label>
-      <input type="password" class="form-control" [(ngModel)]="password" name="password" />
-    </div>
-    <div class="col-md-6"></div>
+<div class="row">
+  <div class="col-md-6">
+    <label>User Name</label>
+    <input type="text" class="form-control" [(ngModel)]="userName" name="userName" />
+    <label>Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password" name="password" />
   </div>
-  <br />
-  <div class="row">
-    <div class="col-md-6">
-      <input *ngIf="showSignup" type="checkbox" class="form-check-input" (change)="toggleAdmin($event)">
-      <label *ngIf="showSignup">Admin</label>
-      <br>
-      <label *ngIf="showSignup">Tavern Name</label>
-      <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminTavernInput" name="adminTavernInput" />
-      <my-taverns *ngIf="showSignup && !isAdmin"></my-taverns>
-      <br>
-      <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">
-        {{ showSignup ? "Sign Up" : "Submit"}}
-      </button>
-      <button type="button" class="btn btn-secondary float-right" (click)="toggleSignup()">
-        {{ showSignup ? "Cancel" : "Sign Up"}}
-      </button>
-    </div>
+  <div class="col-md-6"></div>
+</div>
+<br />
+<div class="row">
+  <div class="col-md-6">
+    <input *ngIf="showSignup" type="checkbox" class="form-check-input" (change)="toggleAdmin($event)">
+    <label *ngIf="showSignup">Admin</label>
+    <br>
+    <label *ngIf="showSignup">Tavern Name</label>
+    <input *ngIf="showSignup && isAdmin" class="form-control" [(ngModel)]="adminTavernInput" name="adminTavernInput" />
+    <select *ngIf="showSignup && !isAdmin" [(ngModel)]="selected">
+      <option [ngValue]="undefined" disabled>Select Any </option>
+      <option *ngFor="let tavern of Taverns" [ngValue]="tavern"> {{tavern.Name}} </option>
+    </select>
+    <h3>{{selected | json}} </h3>
+    <br>
+    <button type="submit" class="btn btn-primary" (click)="showSignup ? signup() : login()">
+      {{ showSignup ? "Sign Up" : "Submit"}}
+    </button>
+    <button type="button" class="btn btn-secondary float-right" (click)="toggleSignup()">
+      {{ showSignup ? "Cancel" : "Sign Up"}}
+    </button>
   </div>
-</form>
+</div>

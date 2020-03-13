@@ -1,5 +1,5 @@
-<select [(ngModel)]="selected">
+<select [(ngModel)]="pickTavern">
     <option [ngValue]="undefined" disabled>Select Any </option>
-    <option *ngFor="let tavern of Taverns" [ngValue]="tavern"  [(ngModel)]="pickTavern" name="pickTavern"> {{tavern.Name}} </option>
+    <option *ngFor="let tavern of Taverns" [ngValue]="tavern" name="pickTavern"> {{tavern.Name}} </option>
 </select>
 <h3>{{selected | json}} </h3>

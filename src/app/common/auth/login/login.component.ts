@@ -10,8 +10,21 @@ export class LoginComponent implements OnInit, OnDestroy {
     userName = '';
     password = '';
     adminTavernInput = '';
+    selected: any;
     showSignup = false;
     isAdmin = false;
+    Taverns = [{
+        Id:1,
+        Name:"John's Tavern"
+      },
+      {
+        Id:2,
+        Name:"Moe's Tavern"
+      },
+      {
+       Id:3,
+        Name:"Kate's Tavern"
+      }];
 
     constructor(private router: Router, private authService: AuthService) { }
 
@@ -48,8 +61,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         const payload = {
             UserName: this.userName,
             Password: this.password,
-            TavernID: this.pickTavern,
-            TavernName: this.adminTavernInput
+            tavern: {
+                TavernID: this.selected.Id,
+                TavernName: this.isAdmin ? this.adminTavernInput : this.selected.Name,
+            }
         }
         console.log(payload);
 
@@ -64,7 +79,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     toggleAdmin(event) {
-        if ( event.target.checked ) {
+        if (event.target.checked) {
             this.isAdmin = true;
             this.adminTavernInput = '';
         }
