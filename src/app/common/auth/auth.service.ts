@@ -84,7 +84,7 @@ export class AuthService {
         }
     }
     
-    signup(user: any): Observable<any> {
+    create(user: any): Observable<any> {
         return this.http.post('http://localhost:3000/users', user);
     }
 

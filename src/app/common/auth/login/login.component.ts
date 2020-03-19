@@ -63,14 +63,16 @@ export class LoginComponent implements OnInit, OnDestroy {
             Password: this.password,
             tavern: {
                 TavernID: this.selected.Id,
-                TavernName: this.isAdmin ? this.adminTavernInput : this.selected.Name,
+                // TavernName: this.isAdmin ? this.adminTavernInput : this.selected.Name
             }
         }
         console.log(payload);
 
-        this.authService.signup(payload).subscribe(
+        this.authService.create(payload).subscribe(
             (user) => {
                 this.router.navigateByUrl('/login');
+                this.toggleSignup();
+                console.log('Successfuly Signed Up!');
             },
             (error) => {
                 console.log(error);
