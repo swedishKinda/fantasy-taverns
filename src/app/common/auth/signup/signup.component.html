@@ -1,0 +1,25 @@
+<h2>Signup</h2>
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <label>User Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="userName" name="userName" />
+            <label>Password:</label>
+            <input type="text" class="form-control" [(ngModel)]="password" name="password" />
+            <label>TavernID:</label>
+            <input type="text" class="form-control" [(ngModel)]="TavernID" name="TavernID" />
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary" (click)="signup()">
+                Submit
+            </button>
+            <button type="button" class="btn btn-secondary float-right" routerLink="/login">
+                Cancel
+            </button>
+        </div>
+    </div>
+</form>
