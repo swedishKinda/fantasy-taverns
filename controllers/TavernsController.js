@@ -13,11 +13,10 @@ getAll = async function (req, res) {
     try {
         Taverns = await pool
             .request()
-            .input('Name', sql.VarChar, req.query.Name)
-            .input('UserId', sql.Int, req.user.Id)
+            .input('TavernName', sql.VarChar, req.query.TavernName)
             .query(
                 // eslint-disable-next-line quotes
-                `select * from Taverns where UserId = @UserId and Name LIKE '%' + @Name + '%' order by OrderId ASC`,
+                `select * from Taverns where TavernName LIKE '%' + @TavernName + '%' order by ID ASC`,
             );
         Taverns = Taverns.recordset;
     } catch (e) {
@@ -34,40 +33,38 @@ const create = async function (req, res) {
     const body = req.body;
 
     if (!body.Name) {
-        return returnError(res, 'Please enter a name', 422);
+        return returnError(res, 'Please enter a tavern name', 422);
     }
     const pool = await poolPromise;
-    let orderId;
+    let tavernID;
 
     try {
-        orderId = await pool
+        tavernID = await pool
             .request()
-            .input('UserId', sql.Int, req.user.Id)
+            .input('ID', sql.Int, req.tavern.Id)
             .query(
-                'select max(OrderId) as OrderId from Taverns where UserId = @UserId',
+                'select max(ID) as ID from Taverns where ID = @ID',
             );
-        orderId = orderId.recordset.shift().OrderId;
+        tavernID = tavernID.recordset.shift().Id;
     } catch (e) {
         returnError(res, e, 500);
     }
 
-    // initialize if it's the very first todo
-    orderId = orderId || orderId === 0 ? orderId + 1 : 0;
+    // initialize if it's the very first tavernID
+    tavernID = tavernID || tavernID === 0 ? tavernID + 1 : 0;
     try {
-        toDo = await pool
+        tavern = await pool
             .request()
-            .input('Name', sql.VarChar, body.Name)
-            .input('OrderId', sql.Int, orderId)
-            .input('UserId', sql.Int, req.user.Id)
+            .input('TavernName', sql.VarChar, body.TavernName)
             .query(
-                'INSERT INTO Taverns ([Name], [UserId], [OrderId]) OUTPUT inserted.* values (@Name, @UserId, @OrderId)',
+                'INSERT INTO Taverns ([TavernName]) OUTPUT inserted.* values (@TavernName)'
             );
-        toDo = toDo.recordset.shift();
+        tavern = tavern.recordset.shift();
     } catch (e) {
         returnError(res, e, 500);
     }
 
-    return returnSuccessResponse(res, toDo, 201);
+    return returnSuccessResponse(res, tavern, 201);
 };
 
 module.exports.create = create;
