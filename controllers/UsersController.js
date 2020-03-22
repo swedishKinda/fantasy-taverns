@@ -21,8 +21,8 @@ const hashPassword = async function(userInfo) {
 };
 
 const createUser = async function(userInfo) {
-    const pool = await poolPromise;
-    let result;
+    const pool = await poolPromise; //hook into current SQL pool and wait for confirmation
+    let result; 
     const roleId = parseInt(userInfo.Tavern.Id) === 0 ? 1 : 2;
 
     if (parseInt(userInfo.Tavern.Id) === 0) {
@@ -50,6 +50,8 @@ const createUser = async function(userInfo) {
             .query(
                 'INSERT INTO Users ([UserName], [TavernId], [RoleId], [Password]) OUTPUT inserted.* values (@UserName, @TavernId, @RoleId, @Password)',
             );
+
+            //paramaterizing prevents SQL injections from form.
     } catch (e) {
         throwError(e.message);
     }

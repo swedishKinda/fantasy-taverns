@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie';
 export interface IUser {
     Id: number;
     UserName: string;
+    Password: string;
     TavernId: number;
     TavernName: string;
     RoleId: number;
