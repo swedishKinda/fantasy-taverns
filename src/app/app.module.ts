@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -12,15 +12,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './common/auth/login/login.component';
 import { TokenInterceptor } from './common/auth/token.interceptor';
 import { HomeComponent } from './home.component';
-import { TavernsComponent } from './common/auth/login/taverns.service';
+import { SignupComponent } from './common/auth/signup/signup.component';
 
 @NgModule({
     bootstrap: [AppComponent],
-    declarations: [AppComponent, LoginComponent, HomeComponent, TavernsComponent],
+    declarations: [AppComponent, LoginComponent, HomeComponent, SignupComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         NgbModule,
         AppRoutingModule,
