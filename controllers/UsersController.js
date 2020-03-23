@@ -23,32 +23,31 @@ const hashPassword = async function(userInfo) {
 const createUser = async function(userInfo) {
     const pool = await poolPromise; //hook into current SQL pool and wait for confirmation
     let result; 
-    const roleId = parseInt(userInfo.Tavern.Id) === 0 ? 1 : 2;
+    // const roleId = parseInt(userInfo.Tavern.Id) === 0 ? 1 : 2;
 
-    if (parseInt(userInfo.Tavern.Id) === 0) {
-        try {
-            tavernResult = await pool
-                .request()
-                .input('TavernName', sql.VarChar, userInfo.Tavern.TavernName)
-                .query(
-                    'INSERT INTO Taverns ([TavernName]) OUTPUT inserted.* values (@TavernName)',
-                );
-            userInfo.Tavern.Id = tavernResult.recordset.shift().ID;
-        } catch (e) {
-            throwError(e.message);
-        }
-    }
-    userInfo.Password = await hashPassword(userInfo);
+    // if (parseInt(userInfo.Tavern.Id) === 0) {
+    //     try {
+    //         tavernResult = await pool
+    //             .request()
+    //             .input('TavernName', sql.VarChar, userInfo.Tavern.TavernName)
+    //             .query(
+    //                 'INSERT INTO Taverns ([TavernName]) OUTPUT inserted.* values (@TavernName)',
+    //             );
+    //         userInfo.Tavern.Id = tavernResult.recordset.shift().ID;
+    //     } catch (e) {
+    //         throwError(e.message);
+    //     }
+    // }
+    // userInfo.Password = await hashPassword(userInfo);
 
     try {
         result = await pool
             .request()
             .input('UserName', sql.NVarChar, userInfo.UserName)
-            .input('TavernId', sql.Int, userInfo.Tavern.Id)
-            .input('RoleId', sql.Int, roleId)
             .input('Password', sql.NVarChar, userInfo.Password)
+            .input('TavernId', sql.Int, userInfo.Tavern.Id)
             .query(
-                'INSERT INTO Users ([UserName], [TavernId], [RoleId], [Password]) OUTPUT inserted.* values (@UserName, @TavernId, @RoleId, @Password)',
+                'INSERT INTO Users ([UserName], [Password], [TavernID]) OUTPUT inserted.* values (@UserName, @Password, @TavernID)',
             );
 
             //paramaterizing prevents SQL injections from form.

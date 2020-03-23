@@ -5,12 +5,12 @@ import { tap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie';
 
 export interface IUser {
-    Id: number;
+    // Id: number;
     UserName: string;
     Password: string;
     TavernId: number;
-    TavernName: string;
-    RoleId: number;
+    // TavernName: string;
+    // RoleId: number;
 }
 
 export interface ILoginResponse {

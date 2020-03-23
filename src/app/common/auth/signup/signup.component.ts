@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 export class SignupComponent {
     userName = '';
     password = '';
-    tavernName = '';
+    // tavernName = '';
     tavernID = '';
 
     constructor(private authService: AuthService, private router: Router) { }
@@ -18,8 +18,12 @@ export class SignupComponent {
         const user = {
             UserName: this.userName,
             Password: this.password,
-            TavernID: this.tavernID,
+            Tavern: {
+                Id: this.tavernID
+                
+            }
         };
+        console.log(user)
         this.authService.create(user).subscribe((answer) => {
             this.router.navigateByUrl('/login');
         });
@@ -29,7 +33,7 @@ export class SignupComponent {
         const adminUser = {
             UserName: this.userName,
             Password: this.password,
-            TavernName: this.tavernName,
+            // TavernName: this.tavernName,
         };
         this.authService.create(adminUser).subscribe((answer) => {
             this.router.navigateByUrl('/login');
