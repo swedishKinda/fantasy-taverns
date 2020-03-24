@@ -16,7 +16,7 @@ getAll = async function (req, res) {
             .input('TavernName', sql.VarChar, req.query.TavernName)
             .query(
                 // eslint-disable-next-line quotes
-                `select * from Taverns where TavernName LIKE '%' + @TavernName + '%' order by ID ASC`,
+                `select * from Taverns`,
             );
         Taverns = Taverns.recordset;
     } catch (e) {

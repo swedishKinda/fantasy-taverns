@@ -9,8 +9,11 @@
             <input type="text" class="form-control" [(ngModel)]="userName" name="userName" />
             <label>Password:</label>
             <input type="password" class="form-control" [(ngModel)]="password" name="password" />
-            <label *ngIf="!isAdmin">TavernID:</label>
-            <input *ngIf="!isAdmin" type="text" class="form-control" [(ngModel)]="tavernID" name="tavernID" />
+            <label *ngIf="!isAdmin">Tavern:</label>
+            <select *ngIf="!isAdmin" class="form-control" [(ngModel)]="tavern" name="tavern">
+                <option [ngValue]="undefined" disabled>Select Tavern</option>
+                <option *ngFor='let tavern of taverns' [ngValue]="taverns">{{tavern.TavernName}}</option>
+            </select>
             <label *ngIf="isAdmin">Tavern Name</label>
             <input *ngIf="isAdmin" tyoe="text" class="form-control" [(ngModel)]="tavernName" name="adminTavernInput" />
         </div>

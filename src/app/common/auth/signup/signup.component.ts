@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { TavernService, ITavern } from '../../../tavern-services/tavern.service';
 
 @Component({
     templateUrl: './signup.component.html',
@@ -11,9 +12,16 @@ export class SignupComponent {
     password = '';
     tavernName = '';
     tavernID = '';
+    taverns: ITavern[];
     isAdmin = false;
 
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router, private tavernService: TavernService) { }
+
+    ngOnInit(): void {
+        this.tavernService.getTaverns().subscribe((tavernList) => {
+            this.taverns = tavernList;
+        });
+    }
 
     signup(): void {
         const user = {

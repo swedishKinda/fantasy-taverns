@@ -71,8 +71,8 @@ app.post('/users', userController.create);
 app.post('/login', userController.login);
 
 app.get(
-    '/mytavern',
-    passport.authenticate('jwt', { session: false}),
+    '/taverns',
+    // passport.authenticate('jwt', { session: false}),
     tavernsController.getAll,
 );
 app.post(
