@@ -23,22 +23,22 @@ const hashPassword = async function(userInfo) {
 const createUser = async function(userInfo) {
     const pool = await poolPromise; //hook into current SQL pool and wait for confirmation
     let result; 
-    // const roleId = parseInt(userInfo.Tavern.Id) === 0 ? 1 : 2;
+    const roleId = parseInt(userInfo.Tavern.Id) === 0 ? 1 : 2;
 
-    // if (parseInt(userInfo.Tavern.Id) === 0) {
-    //     try {
-    //         tavernResult = await pool
-    //             .request()
-    //             .input('TavernName', sql.VarChar, userInfo.Tavern.TavernName)
-    //             .query(
-    //                 'INSERT INTO Taverns ([TavernName]) OUTPUT inserted.* values (@TavernName)',
-    //             );
-    //         userInfo.Tavern.Id = tavernResult.recordset.shift().ID;
-    //     } catch (e) {
-    //         throwError(e.message);
-    //     }
-    // }
-    // userInfo.Password = await hashPassword(userInfo);
+    if (parseInt(userInfo.Tavern.Id) === 0) {
+        try {
+            tavernResult = await pool
+                .request()
+                .input('TavernName', sql.VarChar, userInfo.Tavern.TavernName)
+                .query(
+                    'INSERT INTO Taverns ([TavernName]) OUTPUT inserted.* values (@TavernName)',
+                );
+            userInfo.Tavern.Id = tavernResult.recordset.shift().ID;
+        } catch (e) {
+            throwError(e.message);
+        }
+    }
+    userInfo.Password = await hashPassword(userInfo);
 
     try {
         result = await pool

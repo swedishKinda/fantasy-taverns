@@ -2,12 +2,17 @@
 <form>
     <div class="row">
         <div class="col-md-6">
+            <input type="checkbox" class="form-check-input" (change)="toggleAdmin($event)">
+            <label>Check box if Admin</label>
+            <br>
             <label>User Name:</label>
             <input type="text" class="form-control" [(ngModel)]="userName" name="userName" />
             <label>Password:</label>
             <input type="password" class="form-control" [(ngModel)]="password" name="password" />
-            <label>TavernID:</label>
-            <input type="text" class="form-control" [(ngModel)]="tavernID" name="tavernID" />
+            <label *ngIf="!isAdmin">TavernID:</label>
+            <input *ngIf="!isAdmin" type="text" class="form-control" [(ngModel)]="tavernID" name="tavernID" />
+            <label *ngIf="isAdmin">Tavern Name</label>
+            <input *ngIf="isAdmin" tyoe="text" class="form-control" [(ngModel)]="tavernName" name="adminTavernInput" />
         </div>
         <div class="col-md-6"></div>
     </div>

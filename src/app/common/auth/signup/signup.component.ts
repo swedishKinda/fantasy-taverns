@@ -9,8 +9,9 @@ import { AuthService } from '../auth.service';
 export class SignupComponent {
     userName = '';
     password = '';
-    // tavernName = '';
+    tavernName = '';
     tavernID = '';
+    isAdmin = false;
 
     constructor(private authService: AuthService, private router: Router) { }
 
@@ -19,8 +20,8 @@ export class SignupComponent {
             UserName: this.userName,
             Password: this.password,
             Tavern: {
-                Id: this.tavernID
-                
+                Id: this.tavernID,
+                TavernName: this.tavernName
             }
         };
         console.log(user)
@@ -33,10 +34,19 @@ export class SignupComponent {
         const adminUser = {
             UserName: this.userName,
             Password: this.password,
-            // TavernName: this.tavernName,
+            TavernName: this.tavernName,
         };
         this.authService.create(adminUser).subscribe((answer) => {
             this.router.navigateByUrl('/login');
         });
     }
+
+    toggleAdmin(event): void {
+        if (event.target.checked) {
+            this.isAdmin = true;
+            this.tavernName = '';
+            this.tavernID = '0';
+        }
+    }
+
 }
