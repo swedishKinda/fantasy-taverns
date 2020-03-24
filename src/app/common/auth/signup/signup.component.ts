@@ -13,6 +13,8 @@ export class SignupComponent {
     tavernName = '';
     tavernID = '';
     taverns: ITavern[];
+    tavern: ITavern;
+    selected: any;
     isAdmin = false;
 
     constructor(private authService: AuthService, private router: Router, private tavernService: TavernService) { }
@@ -24,18 +26,26 @@ export class SignupComponent {
     }
 
     signup(): void {
-        const user = {
+        const payload = {
             UserName: this.userName,
             Password: this.password,
             Tavern: {
-                Id: this.tavernID,
+                tavernID: this.tavern.Id,
                 TavernName: this.tavernName
             }
         };
-        console.log(user)
-        this.authService.create(user).subscribe((answer) => {
-            this.router.navigateByUrl('/login');
-        });
+        console.log(payload);
+
+        this.authService.create(payload).subscribe(
+            (user) => {
+                if (user) {
+                    console.log('Successfuly Signed Up!');
+                }
+            },
+            (error) => {
+                console.log(error);
+            },
+        );
     }
 
     adminSignup(): void {
