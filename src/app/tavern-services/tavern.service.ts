@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 export interface ITavern {
-    Id: number;
+    ID: number;
     TavernName: string;
 }
 

@@ -11,7 +11,7 @@ export class SignupComponent {
     userName = '';
     password = '';
     tavernName = '';
-    tavernID = '';
+    Id = '';
     taverns: ITavern[];
     tavern: ITavern;
     selected: any;
@@ -30,7 +30,7 @@ export class SignupComponent {
             UserName: this.userName,
             Password: this.password,
             Tavern: {
-                tavernID: this.tavern.Id,
+                Id: String(this.tavern.ID),
                 TavernName: this.tavernName
             }
         };
@@ -63,7 +63,7 @@ export class SignupComponent {
         if (event.target.checked) {
             this.isAdmin = true;
             this.tavernName = '';
-            this.tavernID = '0';
+            this.Id = '0';
         }
     }
 
