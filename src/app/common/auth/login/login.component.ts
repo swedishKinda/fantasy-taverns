@@ -25,7 +25,7 @@ export class LoginComponent {
                 (response) => {
                     if (response.success) {
                         console.log('successful login');
-                        this.router.navigateByUrl('/taverns');
+                        this.router.navigateByUrl('/my-tavern');
                     }
                 },
                 (error) => {

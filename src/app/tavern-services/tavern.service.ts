@@ -8,6 +8,15 @@ export interface ITavern {
     TavernName: string;
 }
 
+export interface IMyTavern {
+    TavernName: string;
+    RoomName: string;
+    DailyRate: number;
+    ID: number;
+    TavernID: number;
+    RoomStatus: number;
+}
+
 @Injectable({
     providedIn: 'root'
 })
