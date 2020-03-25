@@ -11,10 +11,10 @@ export class SignupComponent {
     userName = '';
     password = '';
     tavernName = '';
-    Id = '';
     taverns: ITavern[];
     tavern: ITavern;
     selected: any;
+    Id = 0;
     isAdmin = false;
 
     constructor(private authService: AuthService, private router: Router, private tavernService: TavernService) { }
@@ -30,7 +30,7 @@ export class SignupComponent {
             UserName: this.userName,
             Password: this.password,
             Tavern: {
-                Id: String(this.tavern.ID),
+                Id: this.tavern.ID,
                 TavernName: this.tavernName
             }
         };
@@ -48,22 +48,22 @@ export class SignupComponent {
         );
     }
 
-    adminSignup(): void {
-        const adminUser = {
-            UserName: this.userName,
-            Password: this.password,
-            TavernName: this.tavernName,
-        };
-        this.authService.create(adminUser).subscribe((answer) => {
-            this.router.navigateByUrl('/login');
-        });
-    }
+    // adminSignup(): void {
+    //     const adminUser = {
+    //         UserName: this.userName,
+    //         Password: this.password,
+    //         TavernName: this.tavernName,
+    //     };
+    //     this.authService.create(adminUser).subscribe((answer) => {
+    //         this.router.navigateByUrl('/login');
+    //     });
+    // }
 
     toggleAdmin(event): void {
         if (event.target.checked) {
             this.isAdmin = true;
             this.tavernName = '';
-            this.Id = '0';
+            this.tavern.ID = 0;
         }
     }
 
