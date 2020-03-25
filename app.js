@@ -80,6 +80,11 @@ app.post(
     passport.authenticate('jwt', {session: false}),
     tavernsController.create
 );
+app.get(
+    '/mytavern',
+    passport.authenticate('jwt', {session: false}),
+    tavernsController.getTavern
+);
 
 console.log('SERVER READY');
 module.exports = app;

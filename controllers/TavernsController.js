@@ -28,6 +28,33 @@ getAll = async function (req, res) {
 
 module.exports.getAll = getAll;
 
+getTavern = async function (req, res) {
+    // format request
+
+    let tavern;
+
+    res.setHeader('Content-Type', 'application/json');
+
+    const pool = await poolPromise;
+    try {
+        tavern = await pool
+            .request()
+            .input('UserId', sql.Int, req.user.ID)
+            .input('RoomName', sql.VarChar, req.query.search)
+            .query(
+                // eslint-disable-next-line quotes
+                `Select TavernName, Taverns.ID, RoomName, Rooms.ID, DailyRate FROM rooms r Join Taverns t on (t.ID = r.TavernID) Join Users u on (u.TavernID = t.ID)  Where u.ID = @UserId and RoomName Like '%' + @RoomName + '%'`
+            );
+        tavern = tavern.recordset;
+    } catch (e) {
+        returnError(res, e, 500);
+    }
+
+    return res.json(tavern);
+};
+
+module.exports.getTavern = getTavern;
+
 const create = async function (req, res) {
     res.setHeader('ContentType', 'application/json');
     const body = req.body;

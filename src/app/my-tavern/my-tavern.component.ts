@@ -17,10 +17,10 @@ export class MyTavernComponent implements OnInit {
   constructor(private tavernService: TavernService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.tavernService.getTaverns().subscribe((tavernList) => {
-      const tavernID = this.tavern;
+    this.tavernService.getTavern().subscribe((tavernList) => {
+      this.tavern = tavernList;
       this.tavernName = this.tavern[0].TavernName;
-      return tavernID;
     });
   }
 }
+      
