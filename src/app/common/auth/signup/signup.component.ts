@@ -13,7 +13,6 @@ export class SignupComponent {
     tavernName = '';
     taverns: ITavern[];
     tavern: ITavern;
-    selected: any;
     Id = 0;
     isAdmin = false;
 
