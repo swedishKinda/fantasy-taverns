@@ -12,7 +12,10 @@ import { TavernService, IMyTavern } from '../tavern-services/tavern.service';
 export class MyTavernComponent implements OnInit {
 
   tavern: IMyTavern[];
+  mytavern: IMyTavern[];
   tavernName: string;
+  roomName: string;
+  dailyRate: number;
 
   constructor(private tavernService: TavernService, private authService: AuthService) { }
 
@@ -20,6 +23,8 @@ export class MyTavernComponent implements OnInit {
     this.tavernService.getTavern().subscribe((tavernList) => {
       this.tavern = tavernList;
       this.tavernName = this.tavern[0].TavernName;
+      this.roomName = this.tavern[0].RoomName;
+      this.dailyRate = this.tavern[0].DailyRate;
     });
   }
 }
