@@ -13,7 +13,7 @@ export class SignupComponent {
     tavernName = '';
     taverns: ITavern[];
     tavern: ITavern;
-    Id = 0;
+    // Id = 0;
     isAdmin = false;
 
     constructor(private authService: AuthService, private router: Router, private tavernService: TavernService) { }
@@ -29,9 +29,9 @@ export class SignupComponent {
             UserName: this.userName,
             Password: this.password,
             Tavern: {
-                Id: this.tavern.ID,
-                TavernName: this.tavernName
-            }
+                Id: this.isAdmin ? 0 : this.tavern.ID,
+                TavernName: this.isAdmin  ? this.tavernName : this.tavern.TavernName,
+            },
         };
         console.log(payload);
 
@@ -62,7 +62,7 @@ export class SignupComponent {
         if (event.target.checked) {
             this.isAdmin = true;
             this.tavernName = '';
-            this.tavern.ID = 0;
+            // this.tavern.ID = 0;
         }
     }
 
