@@ -12,7 +12,7 @@ import { TavernService, IMyTavern } from '../tavern-services/tavern.service';
 export class MyTavernComponent implements OnInit {
 
   tavern: IMyTavern[];
-  mytavern: IMyTavern[];
+  mytavern: IMyTavern;
   tavernName: string;
   roomName: string;
   dailyRate: number;
