@@ -1,19 +1,16 @@
 <h4>{{tavernName}}</h4>
-<ul class="list-group">
-    <li *ngFor="let mytavern of tavern" class="list-group-item">
-        <div class="row">
-            <div class="col-md-6">
-                {{mytavern.RoomName}}
-            </div>
-        </div>
-    </li>
-</ul>
-<ul class="list-group">
-    <li *ngFor="let mytavern of tavern" class="list-group-item">
-        <div class="row">
-            <div class="col-md-6">
-                {{mytavern.DailyRate}}
-            </div>
-        </div>
-    </li>
-</ul>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Room Name</th>
+            <th scope="col">Daily Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let mytavern of tavern'>
+            <td>{{mytavern.RoomName}}</td>
+            <td>{{mytavern.DailyRate}}</td>
+        </tr>
+    </tbody>
+</table>
