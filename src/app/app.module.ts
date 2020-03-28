@@ -14,10 +14,11 @@ import { TokenInterceptor } from './common/auth/token.interceptor';
 import { HomeComponent } from './home.component';
 import { SignupComponent } from './common/auth/signup/signup.component';
 import { MyTavernComponent } from './my-tavern/my-tavern.component';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @NgModule({
     bootstrap: [AppComponent],
-    declarations: [AppComponent, LoginComponent, HomeComponent, SignupComponent, MyTavernComponent],
+    declarations: [AppComponent, LoginComponent, HomeComponent, SignupComponent, MyTavernComponent, RoomsComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

@@ -15,7 +15,7 @@
                 <option *ngFor='let tavern of taverns' [ngValue]="tavern">{{tavern.TavernName}}</option>
             </select>
             <label *ngIf="isAdmin">Tavern Name</label>
-            <input *ngIf="isAdmin" tyoe="text" class="form-control" [(ngModel)]="tavernName" name="adminTavernInput" />
+            <input *ngIf="isAdmin" type="text" class="form-control" [(ngModel)]="tavernName" name="adminTavernInput" />
         </div>
         <div class="col-md-6"></div>
     </div>

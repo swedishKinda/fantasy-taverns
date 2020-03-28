@@ -95,3 +95,30 @@ const create = async function (req, res) {
 };
 
 module.exports.create = create;
+
+const editRoom = async function(req, res) {
+    res.setHeader('ContentType', 'application/json');
+    const body = req.body;
+    console.log(req.body);
+    if (!body.RoomName || !body.DailyRate) {
+        return returnError(res, 'Please enter a value', 422);
+    }
+    const pool = await poolPromise;
+    
+    try {
+        roomPool = await pool
+            .request()
+            .input('RoomName', sql.VarChar, body.RoomName)
+            .input('ID', sql.Int, body.ID)
+            .input('DailyRate', sql.Float, body.DailyRate)
+            .query(
+               'Update Rooms Set RoomName = @RoomName, DailyRate = @DailyRate, Where ID = @ID',
+            );
+    } catch (e) {
+       returnError(res, e, 500);
+    }
+
+    return returnSuccessResponse (res, 'Success', 201);
+};
+
+module.exports.editRoom = editRoom;

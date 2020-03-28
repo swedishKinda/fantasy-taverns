@@ -11,6 +11,9 @@
         <tr *ngFor='let mytavern of tavern'>
             <td>{{mytavern.RoomName}}</td>
             <td>{{mytavern.DailyRate}}</td>
+            <td><button type="button" class="btn btn-primary" routerLink="/rooms">
+                    edit
+                </button></td>
         </tr>
     </tbody>
 </table>

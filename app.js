@@ -85,6 +85,11 @@ app.get(
     passport.authenticate('jwt', {session: false}),
     tavernsController.getTavern
 );
+app.put(
+    `/rooms/:roomID`,
+    passport.authenticate('jwt', { session: false }), 
+    tavernsController.editRoom,
+);
 
 console.log('SERVER READY');
 module.exports = app;
